@@ -1,13 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/components/AppSidebar';
+import { CartProvider } from '@/contexts/CartContext';
+import KittenStore from '@/components/KittenStore';
+import Cart from '@/components/Cart';
 
 const Index = () => {
+  console.log('Rendering Index page - Kitten Store');
+  
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <CartProvider>
+      <SidebarProvider>
+        <div className="min-h-screen flex w-full">
+          <AppSidebar />
+          <main className="flex-1 p-4 lg:p-6">
+            <div className="flex justify-between items-center mb-6">
+              <SidebarTrigger />
+              <Cart />
+            </div>
+            <KittenStore />
+          </main>
+        </div>
+      </SidebarProvider>
+    </CartProvider>
   );
 };
 
